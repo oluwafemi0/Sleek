@@ -1,6 +1,5 @@
-// SystemInput.js
 import React, { useState } from 'react';
-import { View, TextInput, Button, Modal, StyleSheet } from 'react-native';
+import { View, TextInput, Button, Modal, StyleSheet,TouchableOpacity,Text } from 'react-native';
 
 const SystemInput = ({ addSystem, isVisible, onClose }) => {
   const [name, setName] = useState('');
@@ -15,7 +14,7 @@ const SystemInput = ({ addSystem, isVisible, onClose }) => {
       setInverterCapacity('');
       setBatteryVoltage('');
       setBatteryCapacity('');
-      onClose(); // Close the modal after adding the system
+      onClose(); 
     }
   };
 
@@ -26,12 +25,14 @@ const SystemInput = ({ addSystem, isVisible, onClose }) => {
           style={styles.input}
           placeholder="System Name"
           value={name}
+          placeholderTextColor='#b19cd9'
           onChangeText={(text) => setName(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Inverter Capacity"
           value={inverterCapacity}
+          placeholderTextColor='#b19cd9'
           onChangeText={(text) => setInverterCapacity(text)}
           keyboardType="numeric"
         />
@@ -39,6 +40,7 @@ const SystemInput = ({ addSystem, isVisible, onClose }) => {
           style={styles.input}
           placeholder="Battery Voltage"
           value={batteryVoltage}
+          placeholderTextColor='#b19cd9'
           onChangeText={(text) => setBatteryVoltage(text)}
           keyboardType="numeric"
         />
@@ -46,11 +48,19 @@ const SystemInput = ({ addSystem, isVisible, onClose }) => {
           style={styles.input}
           placeholder="Battery Capacity"
           value={batteryCapacity}
+          placeholderTextColor='#b19cd9'
           onChangeText={(text) => setBatteryCapacity(text)}
           keyboardType="numeric"
         />
-        <Button title="Add System" onPress={handleAddSystem} />
-        <Button title="Close Modal" onPress={onClose} />
+
+        <View style={{ marginBottom: 20,flexDirection:'row',justifyContent:'space-evenly', }}>
+        <TouchableOpacity onPress={handleAddSystem} style={styles.button}>
+          <Text style={{ fontSize: 18, color: 'white' }}>Add System</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={onClose} style={[styles.button,]}>
+          <Text style={{ fontSize: 18, color: 'white' }}>Close Modal</Text>
+        </TouchableOpacity>
+        </View>
       </View>
     </Modal>
   );
@@ -58,17 +68,26 @@ const SystemInput = ({ addSystem, isVisible, onClose }) => {
 
 const styles = StyleSheet.create({
   systemModal: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'red',
+    backgroundColor: '#fff',
     padding: 20,
   },
   input: {
     borderWidth: 1,
     marginBottom: 10,
-    padding: 5,
+    padding: 15,
     width: '80%',
+    borderRadius: 5,
+    borderColor:'#b19cd9',
+    color: '#b19cd9'
+  },
+  button: {
+    backgroundColor: '#b19cd9',
+    padding: 10,
+    borderRadius: 5,
+    margin: 10,
+    alignItems: 'center',
   },
 });
 
